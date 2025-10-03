@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <!-- meta essenciais -->
+  <!--meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <!--<meta name="apple-mobile-web-app-capable" content="yes"> <!-- abre como app (sem UI do Safari) -->
+  <!--<meta name="apple-mobile-web-app-status-bar-style" content="default"> <!-- default | black | black-translucent -->
+
+  <!--<link rel="manifest" href="?manifest=1">
+
+  <!-- nome do app quando adicionado à Home -->
+  <!--<meta name="apple-mobile-web-app-title" content="💰 Orçamento">
+
+  <!-- Manifest (Android / PWAs) -->
+  <!--<link rel="manifest" href="<?=ScriptApp.getService().getUrl() ?>?manifest=1">
+
+  <!-- Apple (iOS) -->
+  <!--<link rel="apple-touch-icon" href="data:image/png;base64,<?= getIcon192() ?>">
+
+  <!-- Favicon (desktop) -->
+  <!--<link rel="icon" type="image/png" href="data:image/png;base64,<?= getIcon192() ?>">
+  -->
+
+  <title>💰 Orçamento Familiar</title>
+  <style>
+    :root { --brand:#1976d2; --bg:#f4f6f8; --card:#fff; --muted:#6b7280; }
+    html { font-size: clamp(15px, 2.5vw, 18px); }
+    body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; margin:0; background:var(--bg); color:#111; line-height:1.5; }
+    header { background:var(--brand); color:#fff; padding:1rem;; text-align:center; font-size:1.2rem; }
+    main { max-width:900px; margin:18px auto; padding:0 12px; }
+    section { background:var(--card); border-radius:12px; box-shadow:0 6px 18px rgba(15,23,42,0.06); margin-bottom:12px; overflow:hidden; }
+    h2 { margin:0; padding:0.75rem 1rem;; background:#f3f4f6; font-size:1rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer; user-select:none; }
+    .title-text { flex:1; }
+    .content { padding:14px 16px; display:block; }
+    .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    input, select, button { font-size:1rem; padding:0.6rem 0.8rem; border-radius:8px; border:1px solid #e6e7ea; }
+    .btn {
+      background-color: #1976d2;   /* cor principal */
+      color: #fff;                 /* cor do texto */
+      border: none;                /* sem borda padrão */
+      padding:0.7rem 1.2rem;
+      font-size:1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 0 #0f4c9d; /* sombra cria relevo */
+      display: inline-block;
+    }
+
+    /* Hover: muda a cor */
+    .btn:hover {
+      background-color: #1565c0;
+    }
+
+    /* Active: botão "afunda" */
+    .btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #0f4c9d;
+    }
+
+    /* Variações para modais */
+    .btn-ok,
+    .btn-confirm {
+      background-color: #1976d2;   /* azul padrão */
+      box-shadow: 0 4px 0 #0f4c9d;
+    }
+    .btn-ok:hover,
+    .btn-confirm:hover {
+      background-color: #1565c0;
+    }
+    .btn-ok:active,
+    .btn-confirm:active {
+      box-shadow: 0 2px 0 #0f4c9d;
+    }
+
+    /* Botões negativos (mantêm vermelho) */
+    .btn-cancel {
+      background-color: #f44336;   /* vermelho */
+      box-shadow: 0 4px 0 #b71c1c;
+    }
+    .btn-cancel:hover {
+      background-color: #e53935;
+    }
+    .btn-cancel:active {
+      box-shadow: 0 2px 0 #b71c1c;
+    }
+
+    table { width:100%; border-collapse:collapse; margin-top:0.6rem; font-size:0.95rem; }
+    th, td { padding:0.5rem; border-bottom:1px solid #eef2f6; text-align:left; }
+    th { background:#fbfdff; font-weight:600; }
+    .muted { color:var(--muted); font-size:13px; }
+    .kpis { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:8px; }
+    .kpi { background:#fff; border:1px solid #eef2f6; padding:10px; border-radius:8px; min-width:160px; }
+    .kpi.small { min-width:120px; }
+    .kpi .label { ont-size:0.85rem; color:var(--muted); }
+    .kpi .val { font-weight:700; font-size:1.1rem; margin-top:0.4rem; }
+    .positivo { color:#28a745; }
+    .negativo { color:#dc3545; }
+    .neutro { color:#007bff; }
+    .hidden { display:none; }
+    .chevron { display:inline-block; transition: transform 0.3s ease; margin-left:8px; }
+    .chevron.rotate { transform: rotate(90deg); }
+	  .delete-cell { width: 32px; text-align: center; }
+	  .delete-icon { cursor: pointer; font-size: 16px; }
+
+    @media (max-width:640px){
+      input[type="number"]{ width:100%; } 
+      .kpi{ min-width:140px; } 
+      .chevron { margin-left:4px; }
+    }
+  </style>
+  <script>
+    function toggleSection(contentId, chevronId) {
+      const content = document.getElementById(contentId);
+      const chevron = document.getElementById(chevronId);
+      if(content.classList.contains('hidden')){
+        content.classList.remove('hidden');
+        chevron.classList.add('rotate');
+      } else {
+        content.classList.add('hidden');
+        chevron.classList.remove('rotate');
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>💰 Orçamento Familiar</header>
+
+  <main>
+    <!-- Totais -->
+    <section id="sec-totais">
+      <h2>
+        <span>📊 Totalizadores</span>
+        <span class="muted">Atualizado em: --/--/---- --:--</span>
+      </h2>
+      <div class="content">
+        <div class="kpis" id="kpis">
+          <div class="kpi">
+            <div class="label">Saldo</div>
+            <div class="val positivo" id="saldo">R$ ---</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Despesas Previstas</div>
+            <div class="val negativo" id="despPrev">R$ ---</div>
+          </div>
+          <div class="kpi">
+            <div class="label">Saldo Previsto</div>
+            <div class="val neutro" id="saldoPrev">R$ ---</div>
+          </div>
+          <div class="kpi small">
+            <div class="label" id="meta">Cofre | Meta R$ ---</div>
+            <div class="val positivo" id="cofreValor">R$ ---</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Receitas -->
+    <section id="sec-receitas">
+      <h2 onclick="toggleSection('content-receitas', 'chevron-receitas')">
+        <span class="title-text">💵 Receitas</span>
+        <span id="chevron-receitas" class="chevron">▶</span>
+      </h2>
+      <div class="content hidden" id="content-receitas">
+        <!-- Inputs -->
+        <div class="row">
+          <input id="inpDescRec" placeholder="Descrição" style="flex:1">
+          <input id="inpValorRec" placeholder="Valor (R$)" type="number" step="0.01">
+          <input id="inpVencRec" type="date">
+          <button class="btn" id="btnAddRec">Adicionar</button>
+        </div>
+
+        <table id="tblReceitas">
+          <thead>
+            <tr>
+              <th colspan="2">Descrição</th>
+              <th>Valor</th>
+              <th>Vencimento</th>
+              <th>Recebido</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyReceitas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Despesas Previstas -->
+    <section id="sec-despesas">
+      <h2 onclick="toggleSection('content-despesas', 'chevron-despesas')">
+      <span class="title-text">🛒 Despesas Previstas</span>
+      <span id="chevron-despesas" class="chevron">▶</span>
+      </h2>
+      <div class="content hidden" id="content-despesas">
+      <!-- Inputs -->
+      <div class="row">
+        <input id="inpDescDesp" placeholder="Descrição" style="flex:1">
+        <input id="inpValorDesp" placeholder="Valor (R$)" type="number" step="0.01">
+        <input id="inpVencDesp" type="date">
+        <button class="btn" id="btnAddDesp">Adicionar</button>
+      </div>
+
+      <table id="tblDespesas">
+        <thead>
+        <tr>
+          <th colspan="2">Descrição</th>
+          <th>Valor</th>
+          <th>Dia</th>
+          <th>Pago</th>
+        </tr>
+        </thead>
+        <tbody id="tbodyDespesas"></tbody>
+      </table>
+      </div>
+    </section>
+
+	<!-- Transações Crédito -->
+  <section id="sec-transacoes">
+      <h2 onclick="toggleSection('content-transacoes', 'chevron-transacoes')">
+      <span class="title-text">💳 Transações a Crédito</span>
+		<span id="chevron-transacoes" class="chevron">▶</span>
+      </h2>
+      <div class="content hidden" id="content-transacoes">
+      <!-- Inputs -->
+      <div class="row">
+        <select id="selCartoes" style="flex:1"></select>
+		    <select id="selTipos" style="flex:1"></select>
+        <input id="inpValorTrans" placeholder="Valor (R$)" type="number" step="0.01">
+        <input id="inpDiaTrans" type="date">
+        <button class="btn" id="btnAddTrans">Adicionar</button>
+      </div>
+
+      <table id="tblTransacoes">
+        <thead>
+        <tr>
+          <th colspan="2">Cartao</th>
+          <th>Categoria</th>
+          <th>Valor</th>
+          <th>Dia</th>
+          <th>Fechado</th>
+        </tr>
+        </thead>
+        <tbody id="tbodyTransacoes"></tbody>
+      </table>
+      </div>
+    </section>
+
+  <!-- Cadastro de Cartões -->
+  <section id="sec-cartoes">
+    <h2 onclick="toggleSection('content-cartoes', 'chevron-cartoes')">
+      <span class="title-text">💳 Cadastro de Cartões</span>
+      <span id="chevron-cartoes" class="chevron">▶</span>
+    </h2>
+    <div class="content hidden" id="content-cartoes">
+      <div class="row">
+        <input id="inpCartao" placeholder="Descriçao do cartão" style="flex:1">
+        <input id="inpFechCartao" placeholder="Fechamento" type="number" min="1" max="31" style="width:120px;">
+        <input id="inpVencCartao" placeholder="Vencimento" type="number" min="1" max="31" style="width:120px;">
+        <button class="btn" id="btnAddCartao">Adicionar</button>
+      </div>
+
+      <table id="tblCartoes">
+        <thead>
+          <tr>
+            <th>Cartão</th>
+            <th>Fechamento</th>
+            <th>Vencimento</th>
+            <th>Ativo</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyCartoes"></tbody>
+      </table>
+    </div>
+  </section>
+</body>
+</html>
+
+
+  </main>
