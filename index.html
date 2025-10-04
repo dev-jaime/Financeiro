@@ -112,6 +112,12 @@
       .kpi{ min-width:140px; } 
       .chevron { margin-left:4px; }
     }
+	  /* Quando rodar como PWA instalado (display-mode: standalone), oculta a tarja azul do header */
+	  @media all and (display-mode: standalone) {
+	    header {
+	      display: none;
+	    }
+	  }
   </style>
   <script>
     function toggleSection(contentId, chevronId) {
