@@ -172,6 +172,12 @@ th { background:#fbfdff; font-weight:600; }
   table { font-size:1rem; }
   th, td { padding:0.75rem; }
 }
+@media (max-width: 480px) {
+  table th, table td {
+    padding: 0.35rem 0.4rem; /* menor que os 0.75rem originais */
+    font-size: 0.9rem;       /* opcional: diminui fonte */
+  }
+}
 
 /* PWA standalone: esconde header duplicado */
 @media all and (display-mode: standalone) {
