@@ -52,8 +52,10 @@ function renderReceitas(receitas) {
 
     // recebido toggle
     const tdRecebido = document.createElement("td");
-   tdRecebido.className = "recebido-cell";
+    tdRecebido.className = "recebido-cell";
     tdRecebido.innerHTML = `<span class="recebido-icon" style="cursor:pointer">${r.recebido ? "✔️" : "❌"}</span>`;
+    tr.appendChild(tdRecebido);
+    
     tbody.appendChild(tr);
   });
 }
