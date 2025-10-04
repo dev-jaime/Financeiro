@@ -13,14 +13,14 @@ const urlsToCache = [
 ];
 */
 const urlsToCache = [
-  './index.html',
-  './manifest.json',
-  './css/style.css',
-  './js/app.js',
-  './js/firebase.js',
-  './js/receitas.js',
-  './icons/icon-192.png',
-  './icons/icon-512.png',
+  '/financeiro/index.html',
+  '/financeiro/manifest.json',
+  '/financeiro/css/style.css',
+  '/financeiro/js/app.js',
+  '/financeiro/js/firebase.js',
+  '/financeiro/js/receitas.js',
+  '/financeiro/icons/icon-192.png',
+  '/financeiro/icons/icon-512.png',
 ];
 // Instalando SW e cacheando arquivos existentes
 self.addEventListener("install", event => {
