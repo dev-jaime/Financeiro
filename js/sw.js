@@ -7,6 +7,7 @@ const urlsToCache = [
   '/financeiro/js/app.js',
   '/financeiro/js/firebase.js',
   '/financeiro/js/receitas.js',
+  '/financeiro/js/receitaapp.js',
   '/financeiro/icons/icon-192.png',
   '/financeiro/icons/icon-512.png',
 ];
