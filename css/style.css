@@ -144,6 +144,11 @@ th { background:#fbfdff; font-weight:600; }
 .positivo { color:#28a745; }
 .negativo { color:#dc3545; }
 .neutro { color:#007bff; }
+.hidden { display:none; }
+.chevron { display:inline-block; transition: transform 0.3s ease; margin-left:8px; }
+.chevron.rotate { transform: rotate(90deg); }
+.delete-cell { width: 32px; text-align: center; }
+.delete-icon { cursor: pointer; font-size: 16px; }
 
 /* Responsivo */
 
