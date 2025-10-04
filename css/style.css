@@ -115,18 +115,25 @@ th { background:#fbfdff; font-weight:600; }
 
 /* KPIs */
 .muted { color:var(--muted); font-size:13px; }
+/* Container dos totalizadores */
 .kpis {
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 8px;
 }
+
+/* Cada card de totalizador */
 .kpi {
-  background:#fff;
-  border:1px solid #eef2f6;
-  padding:10px;
-  border-radius:8px;
-  min-width:160px;
+  background: #fff;
+  border: 1px solid #eef2f6;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80px;
 }
 .kpi.small { min-width:120px; }
 .kpi .label { font-size:0.85rem; color:var(--muted); }
@@ -147,6 +154,20 @@ th { background:#fbfdff; font-weight:600; }
   input[type="number"] { width:100%; }
   .kpi { min-width:140px; }
   .chevron { margin-left:4px; }
+}
+
+/* Breakpoint para telas maiores: mantém 4 colunas fixas */
+@media (min-width: 768px) {
+  .kpis {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Breakpoint para telas pequenas: empilha 2x2 ou 1x4 */
+@media (max-width: 480px) {
+  .kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Melhor legibilidade em telas pequenas (até 480px) */
