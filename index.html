@@ -275,6 +275,14 @@
       </table>
     </div>
   </section>
+  <script>
+	if ("serviceWorker" in navigator) {
+	  navigator.serviceWorker.register("/sw.js")
+	    .then(() => console.log("✅ Service Worker registrado"))
+	    .catch(err => console.error("❌ Erro ao registrar SW", err));
+	}
+  </script>
+
 </body>
 </html>
 
