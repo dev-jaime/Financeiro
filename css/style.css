@@ -133,13 +133,13 @@ th { background:#fbfdff; font-weight:600; }
 .kpi {
   background: #fff;
   border: 1px solid #eef2f6;
-  padding: 12px;
+  padding: 8px;
   border-radius: 8px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 80px;
+  min-height: 56px;
   min-width: 0; /* importante para Safari */
 }
 .kpi.small { min-width: auto; } /* iguala o Cofre Meta aos outros */
