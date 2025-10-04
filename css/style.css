@@ -139,7 +139,7 @@ th { background:#fbfdff; font-weight:600; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 56px;
+  min-height: 40px;
   min-width: 0; /* importante para Safari */
 }
 .kpi.small { min-width: auto; } /* iguala o Cofre Meta aos outros */
