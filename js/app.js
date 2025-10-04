@@ -17,7 +17,7 @@ function formatDate(v) {
 }
 
 /* Funcoes de banco de dados */
-import { getReceitas } from "receitas.js";
+import { getReceitas } from "./receitas.js";
 
 function renderReceitas(receitas) {
   const tbody = document.getElementById("tbodyReceitas");
