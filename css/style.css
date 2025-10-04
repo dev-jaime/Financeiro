@@ -210,13 +210,13 @@ th { background:#fbfdff; font-weight:600; }
 
 /* O conteúdo (cards) */
 #sec-totais .content {
-  padding: 14px 16px;
+  padding: 8px 16px;
 }
 
 /* Container dos totalizadores - grid previsível */
 #sec-totais .kpis {
   display: grid;
-  gap: 12px;
+  gap: 8px;
   grid-template-columns: repeat(4, 1fr); /* desktop */
   margin-bottom: 8px;
 }
@@ -248,8 +248,8 @@ th { background:#fbfdff; font-weight:600; }
   color: var(--muted);
   font-size: 0.82rem;      /* menor que .label (0.95rem) */
   line-height: 1.2;
-  margin-top: 12px;
-  padding: 0 16px 12px;    /* padding inferior para não colar no próximo section */
+  margin-top: 4px;
+  padding: 0 12px 8px;    /* padding inferior para não colar no próximo section */
   box-sizing: border-box;
 }
 
