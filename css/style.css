@@ -99,23 +99,45 @@ input, select, button {
 .btn-cancel:hover { background-color: #e53935; }
 .btn-cancel:active { box-shadow: 0 2px 0 #b71c1c; }
 
-#sec-totais {
-  margin-bottom: 1.5em;
+/* ---------- Ajustes específicos para a seção "Totalizadores" ---------- */
+
+/* Faz o título agir como bloco e centraliza o texto */
+#sec-totais > h2 {
+  display: block !important;      /* sobrescreve o display:flex global do h2 */
+  text-align: center !important;  /* centraliza o texto do título */
+  margin: 0;                       /* mantem o spacing que você quer */
+  padding: 0.75rem 1rem;           /* mantém o padding visual do h2 */
+  background: #f3f4f6;             /* mesma cor do resto dos h2 */
+  font-size: 1rem;                 /* ajustável se quiser maior/menor */
 }
 
-/* título centralizado */
-#sec-totais .totais-title {
-  text-align: center;
-  margin-bottom: 1em;
+/* Se você tiver um ícone/chevron dentro do h2 e quiser mantê-lo escondido aqui,
+   garanta que não quebre a centralização */
+#sec-totais > h2 .chevron {
+  display: none;
 }
 
-/* rodapé da seção */
+/* Conteúdo (kpis) permanece como antes */
+#sec-totais .content {
+  padding: 14px 16px;
+}
+
+/* Rodapé da seção: 'Atualizado em' alinhado à direita */
 #sec-totais .updated {
+  display: block;
+  width: 100%;
   text-align: right;
-  font-size: 0.9em;
+  font-size: 0.9rem;
   color: var(--muted);
-  margin-top: 1em;
+  margin-top: 10px;   /* espaço entre o conteúdo e o rodapé */
+  padding: 0 16px;    /* alinhamento interno com o content */
 }
+
+/* Em telas muito pequenas, reduz um pouco o tamanho do rodapé para caber */
+@media (max-width: 360px) {
+  #sec-totais .updated { font-size: 0.82rem; }
+}
+
 
 /* Tabelas */
 table {
