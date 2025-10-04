@@ -115,6 +115,7 @@ th { background:#fbfdff; font-weight:600; }
 
 /* KPIs */
 .muted { color:var(--muted); font-size:13px; }
+
 /* Container dos totalizadores */
 .kpis {
   display: grid;
@@ -166,4 +167,3 @@ th { background:#fbfdff; font-weight:600; }
 @media all and (display-mode: standalone) {
   header { display: none; }
 }
-
