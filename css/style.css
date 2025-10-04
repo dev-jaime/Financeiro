@@ -99,46 +99,6 @@ input, select, button {
 .btn-cancel:hover { background-color: #e53935; }
 .btn-cancel:active { box-shadow: 0 2px 0 #b71c1c; }
 
-/* ---------- Ajustes específicos para a seção "Totalizadores" ---------- */
-
-/* Faz o título agir como bloco e centraliza o texto */
-#sec-totais > h2 {
-  display: block !important;      /* sobrescreve o display:flex global do h2 */
-  text-align: center !important;  /* centraliza o texto do título */
-  margin: 0;                       /* mantem o spacing que você quer */
-  padding: 0.75rem 1rem;           /* mantém o padding visual do h2 */
-  background: #f3f4f6;             /* mesma cor do resto dos h2 */
-  font-size: 1rem;                 /* ajustável se quiser maior/menor */
-}
-
-/* Se você tiver um ícone/chevron dentro do h2 e quiser mantê-lo escondido aqui,
-   garanta que não quebre a centralização */
-#sec-totais > h2 .chevron {
-  display: none;
-}
-
-/* Conteúdo (kpis) permanece como antes */
-#sec-totais .content {
-  padding: 14px 16px;
-}
-
-/* Rodapé da seção: 'Atualizado em' alinhado à direita */
-#sec-totais .updated {
-  display: block;
-  width: 100%;
-  text-align: right;
-  font-size: 0.9rem;
-  color: var(--muted);
-  margin-top: 10px;   /* espaço entre o conteúdo e o rodapé */
-  padding: 0 16px;    /* alinhamento interno com o content */
-}
-
-/* Em telas muito pequenas, reduz um pouco o tamanho do rodapé para caber */
-@media (max-width: 360px) {
-  #sec-totais .updated { font-size: 0.82rem; }
-}
-
-
 /* Tabelas */
 table {
   width:100%;
@@ -212,3 +172,93 @@ th { background:#fbfdff; font-weight:600; }
 @media all and (display-mode: standalone) {
   header { display: none; }
 }
+
+
+/* =====================
+   Ajustes finais: seção Totalizadores
+   ===================== */
+
+/* Garante que qualquer h2 dentro de #sec-totais se comporte como bloco */
+#sec-totais h2,
+#sec-totais .totais-title {
+  display: block !important;
+  text-align: center !important;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  background: #f3f4f6;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Se por acaso seu h2 continha um span.updated (versões antigas), escondemos aqui */
+#sec-totais h2 .updated,
+#sec-totais h2 .muted {
+  display: none !important;
+}
+
+/* O conteúdo (cards) */
+#sec-totais .content {
+  padding: 14px 16px;
+}
+
+/* Container dos totalizadores - grid previsível */
+#sec-totais .kpis {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, 1fr); /* desktop */
+  margin-bottom: 8px;
+}
+
+/* Cards: manter min-width:0 para compatibilidade com Safari */
+#sec-totais .kpi {
+  min-width: 0;
+  min-height: 80px;
+  padding: 12px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Ajuste do label e valor (certificando prioridade) */
+#sec-totais .kpi .label { font-size: 0.95rem; color: var(--muted); }
+#sec-totais .kpi .val { font-size: 1.15rem; font-weight:700; margin-top:0.35rem; }
+
+/* Tornar o "cofre" igual aos demais em largura/estilo */
+#sec-totais .kpi.small { min-width: 0; }
+
+/* Rodapé da seção: 'Atualizado em' — menor que os labels e alinhado à direita */
+#sec-totais .updated {
+  display: block;
+  width: 100%;
+  text-align: right;
+  color: var(--muted);
+  font-size: 0.82rem;      /* menor que .label (0.95rem) */
+  line-height: 1.2;
+  margin-top: 12px;
+  padding: 0 16px 12px;    /* padding inferior para não colar no próximo section */
+  box-sizing: border-box;
+}
+
+/* Responsivo: 2 colunas em telas médias/pequenas */
+@media (max-width: 768px) {
+  #sec-totais .kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Em telas bem pequenas, manter 2 colunas, aumentar altura */
+@media (max-width: 480px) {
+  #sec-totais .kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #sec-totais .kpi { min-height: 96px; }
+  #sec-totais .kpi .label { font-size: 0.95rem; }
+  #sec-totais .kpi .val { font-size: 1.12rem; }
+  #sec-totais .updated { font-size: 0.80rem; padding: 0 12px 12px; }
+}
+
+/* se por alguma razão outra regra estiver sobrepondo, reforça com specificity maior */
+section#sec-totais > .updated { font-size: 0.82rem; color: var(--muted); }
