@@ -1,17 +1,5 @@
 const CACHE_NAME = "orcamento-v1";
-/*
-const urlsToCache = [
-  "/",
-  "/index.html",
-  "/manifest.json",
-  "/css/style.css",
-  "/js/app.js",
-  "/js/firebase.js",
-  "/js/receitas.js",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png",
-];
-*/
+
 const urlsToCache = [
   '/financeiro/index.html',
   '/financeiro/manifest.json',
