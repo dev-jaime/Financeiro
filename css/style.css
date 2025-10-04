@@ -139,7 +139,7 @@ th { background:#fbfdff; font-weight:600; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 40px;
+  min-height: 30px;
   min-width: 0; /* importante para Safari */
 }
 .kpi.small { min-width: auto; } /* iguala o Cofre Meta aos outros */
@@ -165,7 +165,7 @@ th { background:#fbfdff; font-weight:600; }
 /* Smartphones pequenos */
 @media (max-width:480px) {
   .kpis { grid-template-columns: repeat(2, 1fr); } /* 2 colunas também */
-  .kpi { min-height: 40px; } /* garante altura suficiente 100px*/
+  .kpi { min-height: 30px; } /* garante altura suficiente 100px*/
   body { font-size: 18px; line-height:1.6; }
   h2 { font-size:1.2rem; }
   button, input, select { font-size:1.1rem; padding:12px 16px; }
@@ -224,7 +224,7 @@ th { background:#fbfdff; font-weight:600; }
 /* Cards: manter min-width:0 para compatibilidade com Safari */
 #sec-totais .kpi {
   min-width: 0;
-  min-height: 40px;
+  min-height: 30px;
   padding: 12px;
   border-radius: 8px;
   display: flex;
@@ -265,7 +265,7 @@ th { background:#fbfdff; font-weight:600; }
   #sec-totais .kpis {
     grid-template-columns: repeat(2, 1fr);
   }
-  #sec-totais .kpi { min-height: 40px; }
+  #sec-totais .kpi { min-height: 30px; }
   #sec-totais .kpi .label { font-size: 0.95rem; }
   #sec-totais .kpi .val { font-size: 1.12rem; }
   #sec-totais .updated { font-size: 0.80rem; padding: 0 12px 12px; }
