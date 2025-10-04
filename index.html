@@ -208,16 +208,8 @@
       }
     }
   </script>
-  <script type="module">
-	  import { getReceitas } from "./js/receitas.js";
-	
-	  async function carregar() {
-	    const receitas = await getReceitas();
-	    console.log(receitas);
-	  }
-	
-	  carregar();
-  </script>
+  <!-- importa os módulos -->
+  <script type="module" src="./app.js"></script>
 
 
 </body>
