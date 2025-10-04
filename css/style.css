@@ -224,7 +224,7 @@ th { background:#fbfdff; font-weight:600; }
 /* Cards: manter min-width:0 para compatibilidade com Safari */
 #sec-totais .kpi {
   min-width: 0;
-  min-height: 56px;
+  min-height: 40px;
   padding: 12px;
   border-radius: 8px;
   display: flex;
@@ -265,7 +265,7 @@ th { background:#fbfdff; font-weight:600; }
   #sec-totais .kpis {
     grid-template-columns: repeat(2, 1fr);
   }
-  #sec-totais .kpi { min-height: 56px; }
+  #sec-totais .kpi { min-height: 40px; }
   #sec-totais .kpi .label { font-size: 0.95rem; }
   #sec-totais .kpi .val { font-size: 1.12rem; }
   #sec-totais .updated { font-size: 0.80rem; padding: 0 12px 12px; }
