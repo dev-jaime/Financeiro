@@ -1,4 +1,5 @@
 const CACHE_NAME = "orcamento-v1";
+/*
 const urlsToCache = [
   "/",
   "/index.html",
@@ -8,9 +9,19 @@ const urlsToCache = [
   "/js/firebase.js",
   "/js/receitas.js",
   "/icons/icon-192.png",
-  "/icons/icon-512.png"
+  "/icons/icon-512.png",
 ];
-
+*/
+const urlsToCache = [
+  './index.html',
+  './manifest.json',
+  './css/style.css',
+  './js/app.js',
+  './js/firebase.js',
+  './js/receitas.js',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+];
 // Instala e faz cache dos arquivos
 self.addEventListener("install", event => {
   event.waitUntil(
