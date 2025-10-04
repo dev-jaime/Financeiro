@@ -116,8 +116,6 @@ th { background:#fbfdff; font-weight:600; }
 /* KPIs */
 .muted { color:var(--muted); font-size:13px; }
 /* Container dos totalizadores */
-/* Container dos totalizadores */
-/* Container dos totalizadores */
 .kpis {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* desktop padrão */
@@ -147,12 +145,15 @@ th { background:#fbfdff; font-weight:600; }
 .neutro { color:#007bff; }
 
 /* Responsivo */
+
+/* Tablets e iPhones grandes */
 @media (max-width:768px) {
-  .kpis { grid-template-columns: repeat(2, 1fr); } /* tablets e iPhone maior */
+  .kpis { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Smartphones pequenos */
 @media (max-width:480px) {
-  .kpis { grid-template-columns: 1fr; } /* smartphones pequenos */
+  .kpis { grid-template-columns: repeat(2, 1fr); } /* 2 colunas também */
   .kpi { min-height: 100px; } /* garante altura suficiente */
   body { font-size: 18px; line-height:1.6; }
   h2 { font-size:1.2rem; }
@@ -165,3 +166,4 @@ th { background:#fbfdff; font-weight:600; }
 @media all and (display-mode: standalone) {
   header { display: none; }
 }
+
