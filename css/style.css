@@ -126,7 +126,7 @@ th { background:#fbfdff; font-weight:600; }
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* desktop padrão */
   gap: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 /* Cada card de totalizador */
@@ -218,7 +218,7 @@ th { background:#fbfdff; font-weight:600; }
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(4, 1fr); /* desktop */
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 /* Cards: manter min-width:0 para compatibilidade com Safari */
@@ -248,8 +248,8 @@ th { background:#fbfdff; font-weight:600; }
   color: var(--muted);
   font-size: 0.82rem;      /* menor que .label (0.95rem) */
   line-height: 1.2;
-  margin-top: 4px;
-  padding: 0 12px 8px;    /* padding inferior para não colar no próximo section */
+  margin-top: 2px;
+  padding: 0 10px 6px;    /* padding inferior para não colar no próximo section */
   box-sizing: border-box;
 }
 
