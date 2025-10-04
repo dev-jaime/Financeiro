@@ -1,7 +1,13 @@
 /* Funcoes utilitarias */
 import * as Utils from './utils.js';
 /* Funcoes de banco de dados */
-import { getReceitas } from "./receitas.js";
+import { getReceitas, addReceita } from "./receitas.js";
+
+const tbody = document.getElementById("tbodyReceitas");
+const btnAddRec = document.getElementById("btnAddRec");
+const inpDescRec = document.getElementById("inpDescRec");
+const inpValorRec = document.getElementById("inpValorRec");
+const inpVencRec = document.getElementById("inpVencRec");
 
 function renderReceitas(receitas) {
   const tbody = document.getElementById("tbodyReceitas");
@@ -55,6 +61,28 @@ async function carregarReceitas() {
     console.error("Erro ao carregar receitas:", err);
   }
 }
+
+async function handleAddReceita() {
+  const descricao = inpDescRec.value.trim();
+  const valor = parseFloat(inpValorRec.value);
+  const venc = inpVencRec.value;
+
+  if (!descricao || isNaN(valor) || !venc) {
+    alert("Preencha todos os campos corretamente!");
+    return;
+  }
+  if (!descricao) { showAlert("Informe uma descrição!"); return; }
+  if (isNaN(valor) || valor <= 0) { showAlert("Informe um valor válido!"); return; }
+  if (!vencStr) { showAlert("Informe uma data de vencimento válida!"); return; }
+
+  await addReceita({ descricao, valor, venc, recebido: false });
+  inpDescRec.value = "";
+  inpValorRec.value = "";
+  inpVencRec.value = "";
+  carregarReceitas(); // recarrega a tabela
+}
+
+btnAddRec.addEventListener("click", handleAddReceita);
 
 // executa ao abrir a página
 carregarReceitas();
