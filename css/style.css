@@ -116,9 +116,10 @@ th { background:#fbfdff; font-weight:600; }
 /* KPIs */
 .muted { color:var(--muted); font-size:13px; }
 /* Container dos totalizadores */
+/* Container dos totalizadores */
 .kpis {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* desktop */
   gap: 12px;
   margin-bottom: 8px;
 }
@@ -157,16 +158,18 @@ th { background:#fbfdff; font-weight:600; }
 }
 
 /* Breakpoint para telas maiores: mantém 4 colunas fixas */
-@media (min-width: 768px) {
+/* Tela média / tablets */
+@media (max-width:768px) {
   .kpis {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* Breakpoint para telas pequenas: empilha 2x2 ou 1x4 */
-@media (max-width: 480px) {
+/* Tela pequena / smartphones */
+@media (max-width:480px) {
   .kpis {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr; /* empilha vertical */
   }
 }
 
