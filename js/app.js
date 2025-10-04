@@ -65,7 +65,7 @@ function renderReceitas(receitas) {
 async function carregarReceitas() {
   try {
     const receitas = await getReceitas();
-    console("receitas: ", receitas);
+    console.log("receitas: ", receitas);
     renderReceitas(receitas);
   } catch (err) {
     console.error("Erro ao carregar receitas:", err);
