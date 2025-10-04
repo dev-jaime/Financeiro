@@ -5,7 +5,7 @@ async function carregar() {
   renderGrid(receitas);
 }
 
-function renderGrid(receitas) {
+function renderGridReceitas(receitas) {
   const tbody = document.querySelector("#gridReceitas tbody");
   tbody.innerHTML = ""; // limpa antes de renderizar
 
