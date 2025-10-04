@@ -32,19 +32,7 @@
   <title>Orçamento Familiar</title>
   <link rel="stylesheet" href="css/style.css">
 
-  <script>
-    function toggleSection(contentId, chevronId) {
-      const content = document.getElementById(contentId);
-      const chevron = document.getElementById(chevronId);
-      if(content.classList.contains('hidden')){
-        content.classList.remove('hidden');
-        chevron.classList.add('rotate');
-      } else {
-        content.classList.add('hidden');
-        chevron.classList.remove('rotate');
-      }
-    }
-  </script>
+  
 </head>
 <body>
   <header>💰 Orçamento Familiar 1.</header>
@@ -206,6 +194,17 @@
 	    .then(() => console.log("✅ Service Worker registrado"))
 	    .catch(err => console.error("❌ Erro ao registrar SW", err));
 	}
+    function toggleSection(contentId, chevronId) {
+      const content = document.getElementById(contentId);
+      const chevron = document.getElementById(chevronId);
+      if(content.classList.contains('hidden')){
+        content.classList.remove('hidden');
+        chevron.classList.add('rotate');
+      } else {
+        content.classList.add('hidden');
+        chevron.classList.remove('rotate');
+      }
+    }
   </script>
 
 </body>
