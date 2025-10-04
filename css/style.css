@@ -224,7 +224,7 @@ th { background:#fbfdff; font-weight:600; }
 /* Cards: manter min-width:0 para compatibilidade com Safari */
 #sec-totais .kpi {
   min-width: 0;
-  min-height: 80px;
+  min-height: 56px;
   padding: 12px;
   border-radius: 8px;
   display: flex;
