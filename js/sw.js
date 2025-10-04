@@ -22,11 +22,23 @@ const urlsToCache = [
   './icons/icon-192.png',
   './icons/icon-512.png',
 ];
-// Instala e faz cache dos arquivos
+// Instalando SW e cacheando arquivos existentes
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+    Promise.all(
+      urlsToCache.map(url =>
+        fetch(url)
+          .then(resp => {
+            if (!resp.ok) throw new Error(`Falha ao buscar ${url}`);
+            return caches.open(CACHE_NAME).then(cache => cache.put(url, resp));
+          })
+          .catch(err => {
+            console.warn("Não foi possível cachear:", url, err.message);
+          })
+      )
+    )
   );
+  self.skipWaiting();
 });
 
 // Ativa e remove caches antigos
