@@ -1,6 +1,5 @@
-// js/receitas.js
-
-import { db, collection, limit, query, where, orderBy, getDocs, addDoc, setDoc, updateDoc, deleteDoc, serverTimestamp, doc, prepareIdData } from "./utilsdao.js";
+//import { db, collection, limit, query, where, orderBy, getDocs, addDoc, setDoc, updateDoc, deleteDoc, serverTimestamp, doc, prepareIdData } from "./utilsdao.js";
+import { db, collection, addDoc, serverTimestamp } from "./firebase.js";
 
 // referência à coleção "receitas"
 const colReceitas = collection(db, "Receitas");
@@ -41,8 +40,11 @@ export async function getReceitasOrdenadas() {
 }
 
 export async function addReceita(data) {
-  const enriched = await prepareIdData(db, "Receitas", data);
-  const docReceitas = doc(db, "Receitas", String(enriched.id));
-  await setDoc(docReceitas, enriched);
-  return docReceitas.id;
+  const enriched = {
+    ...data,
+    atualizado: serverTimestamp() // adiciona timestamp automático
+  };
+
+  const docRef = await addDoc(collection(db, "Receitas"), enriched);
+  return docRef.id; // retorna o id único gerado pelo Firebase
 }
