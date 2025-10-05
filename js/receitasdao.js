@@ -1,5 +1,5 @@
 // js/receitas.js
-import { db } from "./firebase.js";
+
 import { collection, query, where, orderBy, getDocs, addDoc, updateDoc, deleteDoc, prepareIdData } from "./utilsdao.js";
 
 // referência à coleção "receitas"
