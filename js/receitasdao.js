@@ -1,5 +1,4 @@
-//import { db, collection, limit, query, where, orderBy, getDocs, addDoc, setDoc, updateDoc, deleteDoc, serverTimestamp, doc, prepareIdData } from "./utilsdao.js";
-import { db, collection, addDoc, serverTimestamp } from "./firebase.js";
+import { db, collection, limit, query, where, orderBy, getDocs, addDoc, setDoc, updateDoc, deleteDoc, serverTimestamp, doc } from "./utilsdao.js";
 
 // referência à coleção "receitas"
 const colReceitas = collection(db, "Receitas");
