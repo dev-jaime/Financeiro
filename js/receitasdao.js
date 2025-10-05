@@ -1,7 +1,6 @@
 // js/receitas.js
 import { db } from "./firebase.js";
-import { prepareIdData } from "./utilsdao.js";
-import { collection, query, where, orderBy, getDocs, addDoc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+import { collection, query, where, orderBy, getDocs, addDoc, updateDoc, deleteDoc, prepareIdData } from "./utilsdao.js";
 
 // referência à coleção "receitas"
 const colReceitas = collection(db, "Receitas");
@@ -12,14 +11,10 @@ export async function getAllReceitas() {
   return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 }
 
-import { collection, query, where, orderBy, getDocs } from "firebase/firestore";
-
-const colRef = collection(db, "Receitas");
-
 export async function getReceitasOrdenadas() {
   // Não recebidos: mais antigos primeiro
   const naoRecebidosQuery = query(
-    colRef,
+    colReceitas,
     where("recebido", "==", false),
     orderBy("venc", "asc")
   );
@@ -31,7 +26,7 @@ export async function getReceitasOrdenadas() {
 
   // Recebidos: mais recentes primeiro
   const recebidosQuery = query(
-    colRef,
+    colReceitas,
     where("recebido", "==", true),
     orderBy("venc", "desc")
   );
@@ -47,7 +42,7 @@ export async function getReceitasOrdenadas() {
 
 export async function addReceita(data) {
   const enriched = await prepareDataWithId(db, "Receitas", data);
-  const docRef = doc(db, "Receitas", String(enriched.id));
-  await setDoc(docRef, enriched);
-  return docRef.id;
+  const docReceitas = doc(db, "Receitas", String(enriched.id));
+  await setDoc(docReceitas, enriched);
+  return docReceitas.id;
 }
