@@ -31,5 +31,3 @@ function showAlert(message, onOk) {
     if (onOk) onOk();
   };
 }
-
-  </script>
