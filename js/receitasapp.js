@@ -65,11 +65,11 @@ async function carregarReceitas() {
 async function handleAddReceita() {
   const descricao = inpDescRec.value.trim();
   const valor = parseFloat(inpValorRec.value);
-  const vencStr = inpVencRec.value;
+  const venc = inpVencRec.value;
  
   if (!descricao) { showAlert("Informe uma descrição!"); return; }
   if (isNaN(valor) || valor <= 0) { showAlert("Informe um valor válido!"); return; }
-  if (!vencStr) { showAlert("Informe uma data de vencimento válida!"); return; }
+  if (!venc) { showAlert("Informe uma data de vencimento válida!"); return; }
 
   await addReceita({ descricao, valor, venc, recebido: false });
   inpDescRec.value = "";
