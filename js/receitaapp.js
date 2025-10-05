@@ -66,11 +66,7 @@ async function handleAddReceita() {
   const descricao = inpDescRec.value.trim();
   const valor = parseFloat(inpValorRec.value);
   const venc = inpVencRec.value;
-
-  if (!descricao || isNaN(valor) || !venc) {
-    alert("Preencha todos os campos corretamente!");
-    return;
-  }
+ 
   if (!descricao) { showAlert("Informe uma descrição!"); return; }
   if (isNaN(valor) || valor <= 0) { showAlert("Informe um valor válido!"); return; }
   if (!vencStr) { showAlert("Informe uma data de vencimento válida!"); return; }
