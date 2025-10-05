@@ -41,7 +41,7 @@ export async function getReceitasOrdenadas() {
 }
 
 export async function addReceita(data) {
-  const enriched = await prepareDataWithId(db, "Receitas", data);
+  const enriched = await prepareIdData(db, "Receitas", data);
   const docReceitas = doc(db, "Receitas", String(enriched.id));
   await setDoc(docReceitas, enriched);
   return docReceitas.id;
