@@ -192,34 +192,29 @@
 				</div>
 		</div>
 	</div>
-
-  
-
 	  
   <script>
-	if ("serviceWorker" in navigator) {
-	  navigator.serviceWorker.register("js/sw.js")
-	    .then(() => console.log("✅ Service Worker registrado"))
-	    .catch(err => console.error("❌ Erro ao registrar SW", err));
-	}
-    function toggleSection(contentId, chevronId) {
-      const content = document.getElementById(contentId);
-      const chevron = document.getElementById(chevronId);
-      if(content.classList.contains('hidden')){
-        content.classList.remove('hidden');
-        chevron.classList.add('rotate');
-      } else {
-        content.classList.add('hidden');
-        chevron.classList.remove('rotate');
-      }
-    }
+		if ("serviceWorker" in navigator) {
+		  navigator.serviceWorker.register("js/sw.js")
+		    .then(() => console.log("✅ Service Worker registrado"))
+		    .catch(err => console.error("❌ Erro ao registrar SW", err));
+		}
+		function toggleSection(contentId, chevronId) {
+			const content = document.getElementById(contentId);
+			const chevron = document.getElementById(chevronId);
+			if(content.classList.contains('hidden')){
+				content.classList.remove('hidden');
+				chevron.classList.add('rotate');
+			} else {
+				content.classList.add('hidden');
+				chevron.classList.remove('rotate');
+			}
+		}
   </script>
   <!-- importa os módulos -->
   <script type="module" src="js/receitaapp.js"></script>
 	<script src="modals.js"></script>
-
-
-
+		
 </body>
 </html>
 
