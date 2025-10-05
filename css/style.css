@@ -115,6 +115,9 @@ th, td {
   vertical-align: middle;
 }
 th {
+  white-space: nowrap; /* impede quebra */
+  overflow: hidden;    /* evita scroll horizontal feio */
+  text-overflow: ellipsis; /* se um título for gigante, mostra ... */
   background:#fbfdff;
   font-weight:600;
   font-size:0.9rem;
