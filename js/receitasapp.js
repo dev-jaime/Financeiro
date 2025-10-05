@@ -65,7 +65,7 @@ async function carregarReceitas() {
 async function handleAddReceita() {
   const descricao = inpDescRec.value.trim();
   const valor = parseFloat(inpValorRec.value);
-  const venc = inpVencRec.value;
+  const vencStr = inpVencRec.value;
  
   if (!descricao) { showAlert("Informe uma descrição!"); return; }
   if (isNaN(valor) || valor <= 0) { showAlert("Informe um valor válido!"); return; }
