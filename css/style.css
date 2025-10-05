@@ -122,7 +122,7 @@ th {
 
 /* Coluna da lixeira */
 .delete-col {
-  width: 36px;         /* largura fixa */
+  width: 20px;         /* largura fixa */
   text-align: center;  /* centraliza o ícone */
   padding: 0.2rem;     /* bem compacto */
 }
