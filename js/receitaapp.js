@@ -1,7 +1,7 @@
 /* Funcoes utilitarias */
 import * as Utils from './utils.js';
 /* Funcoes de banco de dados */
-import { getReceitas, addReceita } from "./receitas.js";
+import { getReceitas, addReceita } from "./receitasdao.js";
 
 const tbody = document.getElementById("tbodyReceitas");
 const btnAddRec = document.getElementById("btnAddRec");
