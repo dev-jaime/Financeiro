@@ -32,12 +32,12 @@ function renderReceitas(receitas) {
 
     // valor
     const tdValor = document.createElement("td");
-    tdValor.textContent = formatCurrencyBRL(r.valor);
+    tdValor.textContent = Utils.formatCurrencyBRL(r.valor);
     tr.appendChild(tdValor);
 
     // vencimento
     const tdVenc = document.createElement("td");
-    tdVenc.textContent = r.venc ? formatDate(r.venc) : "-";
+    tdVenc.textContent = r.venc ? Utils.formatDate(r.venc) : "-";
     tr.appendChild(tdVenc);
 
     // recebido toggle
