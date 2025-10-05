@@ -1,7 +1,7 @@
 /* Funcoes utilitarias */
 import * as Utils from "./utils.js";
 /* Funcoes de banco de dados */
-import { getReceitas, addReceita } from "./receitasdao.js";
+import { getAllReceitas, getReceitasOrdenadas, addReceita } from "./receitasdao.js";
 
 const tbody = document.getElementById("tbodyReceitas");
 const btnAddRec = document.getElementById("btnAddRec");
@@ -54,7 +54,7 @@ function renderReceitas(receitas) {
 
 async function carregarReceitas() {
   try {
-    const receitas = await getReceitas();
+    const receitas = await getReceitasOrdenadas();
     console.log("receitas: ", receitas);
     renderReceitas(receitas);
   } catch (err) {
