@@ -1,5 +1,5 @@
 import { db } from "./firebase.js";
-import { collection, limit, query, where, orderBy, getDocs, addDoc, updateDoc, deleteDoc, serverTimestamp, doc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+import { collection, limit, query, where, orderBy, getDocs, addDoc, setDoc, updateDoc, deleteDoc, serverTimestamp, doc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
 export { db, collection, limit, query, where, orderBy, getDocs, addDoc, updateDoc, deleteDoc, serverTimestamp, doc }
 
 export async function prepareIdData(db, collectionName, data) {
