@@ -1,5 +1,5 @@
 /* Funcoes utilitarias */
-import * as Utils from './utils.js';
+import * as Utils from "./utils.js";
 /* Funcoes de banco de dados */
 import { getReceitas, addReceita } from "./receitasdao.js";
 
