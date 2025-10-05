@@ -120,6 +120,30 @@ th {
   font-size:0.9rem;
 }
 
+/* Coluna da lixeira */
+.delete-col {
+  width: 36px;         /* largura fixa */
+  text-align: center;  /* centraliza o ícone */
+  padding: 0.2rem;     /* bem compacto */
+}
+
+/* Ícone menor */
+.delete-icon {
+  font-size: 16px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.delete-icon:hover {
+  color: #d32f2f;
+}
+
+/* Coluna da descrição */
+.desc-col {
+  text-align: left;
+  padding-left: 0.4rem;
+  word-wrap: break-word;
+}
+
 .recebido-cell {
   text-align: center;
   vertical-align: middle; /* centraliza também verticalmente */
