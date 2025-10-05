@@ -70,7 +70,7 @@ async function handleAddReceita() {
   if (!descricao) { showAlert("Informe uma descrição!"); return; }
   if (isNaN(valor) || valor <= 0) { showAlert("Informe um valor válido!"); return; }
   if (!venc) { showAlert("Informe uma data de vencimento válida!"); return; }
-
+  
   await addReceita({ descricao, valor, venc, recebido: false });
   inpDescRec.value = "";
   inpValorRec.value = "";

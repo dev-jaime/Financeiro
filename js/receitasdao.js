@@ -39,6 +39,12 @@ export async function getReceitasOrdenadas() {
 }
 
 export async function addReceita(data) {
+  if (typeof data.venc === "string") {
+    const [ano, mes, dia] = data.venc.split("-").map(Number);
+    data.venc = new Date(ano, mes - 1, dia); // <- mês começa do 0
+  }
+  if (!(data.venc instanceof Date) || isNaN(data.venc)) throw new Error("Campo 'venc' deve ser uma data válida. Vencimento: " + data.venc);
+
   const enriched = {
     ...data,
     atualizado: serverTimestamp() // adiciona timestamp automático
