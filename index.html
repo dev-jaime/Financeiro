@@ -171,6 +171,31 @@
       </table>
     </div>
   </section>
+	
+  <!-- Modal de Confirmação -->
+  <div id="modalConfirm" class="modal">
+    <div class="modal-content">
+      <p id="modalConfirmMessage">Tem certeza?</p>
+      <div class="modal-actions">
+        <button id="modalConfirmYes" class="btn btn-confirm">Sim</button>
+        <button id="modalConfirmNo" class="btn btn-cancel">Não</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Alerta -->
+  <div id="modalAlert" class="modal">
+    <div class="modal-content">
+				<p id="modalAlertMessage">Mensagem de alerta</p>
+				<div class="modal-actions">
+					<button id="modalAlertOk" class="btn btn-ok">OK</button>
+				</div>
+		</div>
+	</div>
+
+  
+
+	  
   <script>
 	if ("serviceWorker" in navigator) {
 	  navigator.serviceWorker.register("js/sw.js")
