@@ -53,3 +53,37 @@ export async function addReceita(data) {
   const docRef = await addDoc(collection(db, "Receitas"), enriched);
   return docRef.id; // retorna o id único gerado pelo Firebase
 }
+
+/**
+ * Atualiza uma receita pelo id
+ * @param {string} id - ID do documento (gerado automaticamente pelo Firestore)
+ * @param {object} data - Campos a atualizar
+ */
+export async function updateReceita(id, data) {
+  try {
+    const docRef = doc(db, "Receitas", id);
+    await updateDoc(docRef, {
+      ...data,
+      atualizado: serverTimestamp() // sempre atualiza o timestamp
+    });
+    console.log(`Receita ${id} atualizada com sucesso.`);
+  } catch (err) {
+    console.error("Erro ao atualizar receita:", err);
+    throw err;
+  }
+}
+
+/**
+ * Deleta uma receita pelo id
+ * @param {string} id - ID do documento (gerado automaticamente pelo Firestore)
+ */
+export async function deleteReceita(id) {
+  try {
+    const docRef = doc(db, "Receitas", id);
+    await deleteDoc(docRef);
+    console.log(`Receita ${id} excluída com sucesso.`);
+  } catch (err) {
+    console.error("Erro ao excluir receita:", err);
+    throw err;
+  }
+}

@@ -1,7 +1,7 @@
 /* Funcoes utilitarias */
 import * as Utils from "./utils.js";
 /* Funcoes de banco de dados */
-import { getAllReceitas, getReceitasOrdenadas, addReceita } from "./receitasdao.js";
+import { getAllReceitas, getReceitasOrdenadas, addReceita, updateReceita, deleteReceita } from "./receitasdao.js";
 
 const tbody = document.getElementById("tbodyReceitas");
 const btnAddRec = document.getElementById("btnAddRec");
@@ -79,6 +79,53 @@ async function handleAddReceita() {
 }
 
 btnAddRec.addEventListener("click", handleAddReceita);
+
+// delegação de eventos só para exclusão
+tbody.addEventListener("click", async (e) => {
+  const target = e.target;
+  const tr = target.closest("tr");
+  if (!tr) return;
+
+  const id = tr.dataset.id; // id único do Firestore
+
+  if (e.target.classList.contains("toggle-receita")) {
+    const ativo = e.target.checked;
+    const status = span.textContent === "❌";
+    span.textContent = status ? "✔️" : "❌";
+
+    await updateReceita(id, { pago: status });
+    carregarReceitas();
+  }
+
+  // clique no ícone de deletar
+  if (target.classList.contains("delete-icon") || target.classList.contains("delete-cell")) {
+    const descricao = tr.querySelector(".descricao-cell")?.textContent.trim() || "";
+    showConfirm(`Deseja excluir a receita "${descricao}"?`, async () => {
+      try {
+        // otimista: remove imediatamente do DOM
+        removerReceitaDOM(id);
+
+        // dispara no Firestore
+        await deleteReceita(id);
+
+        console.log(`Receita ${id} removida com sucesso`);
+      } catch (err) {
+        console.error("Erro ao excluir receita:", err);
+
+        // rollback → recarregar lista do servidor
+        await carregarReceitas();
+        showAlert("Erro ao excluir receita: " + (err?.message || err));
+      }
+    });
+  }
+});
+
+function removerReceitaDOM(id) {
+  const tr = tbody.querySelector(`tr[data-id="${id}"]`);
+  if (tr) tr.remove();
+}
+
+
 
 // executa ao abrir a página
 carregarReceitas();
