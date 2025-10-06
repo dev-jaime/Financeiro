@@ -98,6 +98,7 @@ tbody.addEventListener("click", async (e) => {
     span.textContent = status ? "✔️" : "❌";
 
     console.log("id toggle: ", id);
+    console.log("status: ", status);
 
     await updateReceita(id, { recebido: status });
     carregarReceitas();
