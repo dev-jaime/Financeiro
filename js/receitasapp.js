@@ -87,13 +87,19 @@ tbody.addEventListener("click", async (e) => {
   if (!tr) return;
 
   const id = tr.dataset.id; // id único do Firestore
+  console.log("id click: ", id);
 
-  if (e.target.classList.contains("toggle-receita")) {
-    const ativo = e.target.checked;
+  if (target.classList.contains("recebido-icon") || target.closest(".recebido-cell")) {
+    const span = target.classList.contains("recebido-icon") ? target : target.querySelector(".recebido-icon");
+    if (!span) return;
+    const trToggle = span.closest("tr");
+    //const id = trToggle.dataset.id;
     const status = span.textContent === "❌";
     span.textContent = status ? "✔️" : "❌";
 
-    await updateReceita(id, { pago: status });
+    console.log("id toggle: ", id);
+
+    await updateReceita(id, { recebido: status });
     carregarReceitas();
   }
 
