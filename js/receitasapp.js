@@ -28,6 +28,43 @@ function renderReceitas(receitas) {
     const tdDesc = document.createElement("td");
     tdDesc.className = "descricao-cell";
     tdDesc.textContent = r.descricao ?? "";
+    tdDesc.contentEditable = true;
+
+    // ao clicar, seleciona todo o texto (apenas na primeira vez)
+    tdDesc.addEventListener("click", () => {
+      if (!tdDesc._clickedOnce) {
+        const range = document.createRange();
+        range.selectNodeContents(tdDesc);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        tdDesc._clickedOnce = true;
+      }
+    });
+
+    // ao perder foco, salva se houver mudança
+    tdDesc.addEventListener("blur", () => {
+      const novo = tdDesc.textContent.trim();
+      const id = tr.dataset.id;
+
+      if (novo !== r.descricao) {
+        if (!novo) { showAlert("Informe uma descrição!"); return; }
+        r.descricao = novo;
+        salvarReceita(id, { descricao: novo });
+      }
+
+      // reseta flag de clique
+      tdDesc._clickedOnce = false;
+    });
+
+    // ao pressionar Enter, força blur para salvar imediatamente
+    tdDesc.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        tdDesc.blur();
+      }
+    });
+
     tr.appendChild(tdDesc);
 
     // valor
@@ -87,7 +124,6 @@ tbody.addEventListener("click", async (e) => {
   if (!tr) return;
 
   const id = tr.dataset.id; // id único do Firestore
-  console.log("id click: ", id);
 
   if (target.classList.contains("recebido-icon") || target.closest(".recebido-cell")) {
     const span = target.classList.contains("recebido-icon") ? target : target.querySelector(".recebido-icon");
@@ -96,9 +132,6 @@ tbody.addEventListener("click", async (e) => {
     //const id = trToggle.dataset.id;
     const status = span.textContent.includes("❌");
     span.textContent = status ? "✔️" : "❌";
-
-    console.log("id toggle: ", id);
-    console.log("status: ", status);
 
     await updateReceita(id, { recebido: status });
     carregarReceitas();
@@ -131,8 +164,6 @@ function removerReceitaDOM(id) {
   const tr = tbody.querySelector(`tr[data-id="${id}"]`);
   if (tr) tr.remove();
 }
-
-
 
 // executa ao abrir a página
 carregarReceitas();
