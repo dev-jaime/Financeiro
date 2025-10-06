@@ -1,1 +1,1 @@
-testando
+console.log("Teste de sincronização local!");
