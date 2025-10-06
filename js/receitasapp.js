@@ -80,7 +80,7 @@ async function handleAddReceita() {
 
 btnAddRec.addEventListener("click", handleAddReceita);
 
-// delegação de eventos só para exclusão
+// delegação de eventos
 tbody.addEventListener("click", async (e) => {
   const target = e.target;
   const tr = target.closest("tr");
@@ -94,7 +94,7 @@ tbody.addEventListener("click", async (e) => {
     if (!span) return;
     const trToggle = span.closest("tr");
     //const id = trToggle.dataset.id;
-    const status = span.textContent === "❌";
+    const status = span.textContent.includes("❌");
     span.textContent = status ? "✔️" : "❌";
 
     console.log("id toggle: ", id);
